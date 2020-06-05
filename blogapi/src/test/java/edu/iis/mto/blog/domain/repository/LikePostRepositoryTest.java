@@ -103,7 +103,7 @@ public class LikePostRepositoryTest {
     }
 
     @Test
-    public void likeNotFoundTest()
+    public void likePostNotFoundTest()
     {
         LikePost persistedLike = entityManager.persist(likePost);
         LikePost persistedLike2 = entityManager.persist(likePost2);
