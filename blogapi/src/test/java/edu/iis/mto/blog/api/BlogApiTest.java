@@ -2,9 +2,12 @@ package edu.iis.mto.blog.api;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import edu.iis.mto.blog.domain.errors.DomainError;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +66,14 @@ public class BlogApiTest {
                 .accept(MediaType.APPLICATION_JSON)
                 .content(content))
                 .andExpect(status().isConflict());
+    }
+
+    @Ignore
+    @Test
+    public void getNotExistingBlogUserShouldResponseWithNotFoundStatus() throws Exception {
+        long userId = 1L;
+        when(finder.getUserData(userId)).thenThrow(DomainError.class);
+        mvc.perform(get("/blog/user/" + userId)).andExpect(status().isNotFound());
     }
 
     private String writeJson(Object obj) throws JsonProcessingException {
