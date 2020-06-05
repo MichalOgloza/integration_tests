@@ -52,6 +52,11 @@ public class BlogManager extends DomainService implements BlogService {
                                   .orElseThrow(domainError(DomainError.USER_NOT_FOUND));
         BlogPost post = blogPostRepository.findById(postId)
                                           .orElseThrow(domainError(DomainError.POST_NOT_FOUND));
+
+        if(!user.getAccountStatus().equals(AccountStatus.CONFIRMED)) {
+            throw new DomainError(DomainError.INCORRECT_STATUS);
+        }
+
         if (post.getUser()
                 .getId()
                 .equals(userId)) {

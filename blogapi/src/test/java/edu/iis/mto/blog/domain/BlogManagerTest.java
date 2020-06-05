@@ -9,7 +9,6 @@ import edu.iis.mto.blog.domain.model.BlogPost;
 import edu.iis.mto.blog.domain.repository.BlogPostRepository;
 import edu.iis.mto.blog.domain.repository.LikePostRepository;
 import org.hamcrest.Matchers;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
@@ -57,7 +56,7 @@ public class BlogManagerTest {
         User user = userParam.getValue();
         assertThat(user.getAccountStatus(), Matchers.equalTo(AccountStatus.NEW));
     }
-    @Ignore
+
     @Test(expected = DomainError.class)
     public void addingLikePostByUserWithNonConfirmedStatusShouldThrowDomainError() {
         User user = new User();
