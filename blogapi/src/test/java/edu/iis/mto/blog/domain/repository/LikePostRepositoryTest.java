@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,15 +37,11 @@ public class LikePostRepositoryTest {
     @Before
     public void setUp() {
         User user = new User();
-        user.setFirstName("Jan");
-        user.setLastName("Kowalski");
         user.setEmail("kowal@domain.com");
         user.setAccountStatus(AccountStatus.CONFIRMED);
         entityManager.persist(user);
 
         User user2 = new User();
-        user2.setFirstName("Piotr");
-        user2.setLastName("Nowak");
         user2.setEmail("nowy@domain.com");
         user2.setAccountStatus(AccountStatus.CONFIRMED);
         entityManager.persist(user2);
@@ -115,4 +110,5 @@ public class LikePostRepositoryTest {
         Optional<LikePost> like = repository.findByUserAndPost(persistedLike.getUser(), persistedLike2.getPost());
         assertFalse(like.isPresent());
     }
+
 }
