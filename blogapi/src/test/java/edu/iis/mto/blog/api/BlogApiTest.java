@@ -54,7 +54,7 @@ public class BlogApiTest {
     }
 
     @Test
-    public void shouldResponseWithConflictStatusWhenDataIntegrityViolationExceptionOccurs() throws Exception {
+    public void postBlogUserShouldResponseWithConflictStatusWhenDataIntegrityViolationExceptionOccurs() throws Exception {
         UserRequest user = new UserRequest();
         when(blogService.createUser(user)).thenThrow(DataIntegrityViolationException.class);
         String content = writeJson(user);
