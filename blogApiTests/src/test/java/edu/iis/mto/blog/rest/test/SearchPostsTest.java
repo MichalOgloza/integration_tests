@@ -15,6 +15,7 @@ public class SearchPostsTest extends FunctionalTests {
     private static final String USER_API = "/blog/user";
     private static final long CONFIRMED_USER_ID = 1L;
     private static final long NEW_USER_ID = 2L;
+    private static final long REMOVED_USER_ID = 3L;
     private static final long FIRST_USER_POST_ID = 1L;
     private static final long SECOND_USER_POST_ID = 2L;
     private static final long LIKED_POST_ID = 3L;
@@ -32,6 +33,18 @@ public class SearchPostsTest extends FunctionalTests {
                 .get(USER_API + "/" + NEW_USER_ID + "/post")
                 .then()
                 .body("entry", hasSize(2));
+    }
+
+    @Test
+    public void FindPostOfRemovedUserReturnsBadRequestStatus() {
+        given().accept(ContentType.JSON)
+                .header("Content-Type", "application/json;charset=UTF-8")
+                .expect()
+                .log()
+                .all()
+                .statusCode(HttpStatus.SC_BAD_REQUEST)
+                .when()
+                .get(USER_API + "/" + REMOVED_USER_ID + "/post");
     }
 }
 
