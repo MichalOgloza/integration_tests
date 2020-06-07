@@ -27,5 +27,19 @@ public class AddPostTest extends FunctionalTests {
                 .when()
                 .post(USER_API + "/" + CONFIRMED_USER_ID + "/post");
     }
+
+    @Test
+    public void createPostByNewUserReturnsBadRequestStatus() {
+        JSONObject jsonObj = new JSONObject().put("entry", "example2");
+        given().accept(ContentType.JSON)
+                .header("Content-Type", "application/json;charset=UTF-8")
+                .body(jsonObj.toString())
+                .expect()
+                .log()
+                .all()
+                .statusCode(HttpStatus.SC_BAD_REQUEST)
+                .when()
+                .post(USER_API + "/" + NEW_USER_ID + "/post");
+    }
 }
 
