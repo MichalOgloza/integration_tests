@@ -70,7 +70,7 @@ public class BlogApiTest {
     @Test
     public void getNotExistingBlogUserShouldResponseWithNotFoundStatus() throws Exception {
         long userId = 1L;
-        when(finder.getUserData(userId)).thenThrow(DomainError.class);
+        when(finder.getUserData(userId)).thenThrow(new DomainError(DomainError.USER_NOT_FOUND));
         
         mvc.perform(get("/blog/user/" + userId)).andExpect(status().isNotFound());
     }
