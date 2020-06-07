@@ -5,7 +5,6 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
 import org.apache.http.HttpStatus;
-import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 
 import io.restassured.http.ContentType;
