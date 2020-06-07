@@ -28,5 +28,17 @@ public class LikePostTest extends FunctionalTests {
                 .when()
                 .post(USER_API + "/" + CONFIRMED_USER_ID + "/like/" + SECOND_USER_POST_ID);
     }
+
+    @Test
+    public void likePostByNewUserReturnsBadRequestStatus() {
+        given().accept(ContentType.JSON)
+                .header("Content-Type", "application/json;charset=UTF-8")
+                .expect()
+                .log()
+                .all()
+                .statusCode(HttpStatus.SC_BAD_REQUEST)
+                .when()
+                .post(USER_API + "/" + NEW_USER_ID + "/like/" + FIRST_USER_POST_ID);
+    }
 }
 
