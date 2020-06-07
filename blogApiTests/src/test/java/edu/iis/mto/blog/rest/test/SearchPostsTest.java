@@ -21,7 +21,7 @@ public class SearchPostsTest extends FunctionalTests {
 
 
     @Test
-    public void likePostByConfirmedUserReturnsOkStatus() {
+    public void FindUserPostReturnsCorrectNumberOfPosts() {
         given().accept(ContentType.JSON)
                 .header("Content-Type", "application/json;charset=UTF-8")
                 .expect()
