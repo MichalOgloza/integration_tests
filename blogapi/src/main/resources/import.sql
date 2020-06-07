@@ -3,3 +3,5 @@ insert into user (account_status, email, first_name, last_name) values ('CONFIRM
 insert into user (account_status, email, first_name) values ('NEW', 'brian@domain.com', 'Brian')
 insert into blog_post (entry, user_id) values ('post', 1)
 insert into blog_post (entry, user_id) values ('post2', 2)
+insert into blog_post (entry, user_id) values ('multiple likes', 2)
+insert into like_post (user_id, post_id) values (1, 3)
